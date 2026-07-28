@@ -1,0 +1,40 @@
+
+<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Dashboard | AgriAI</title>
+<style>
+body{font-family:Arial;margin:0;background:#eef7ee}nav{background:#2d7a38;color:#fff;padding:15px 25px;display:flex;justify-content:space-between}
+nav a{color:#fff;text-decoration:none;margin-left:12px}.wrap{padding:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.val{font-size:36px;color:#2d7a38;font-weight:bold}
+#rec{font-size:22px;font-weight:bold}.bar{height:10px;background:#ddd;border-radius:5px}.fill{height:10px;background:#2d7a38;border-radius:5px;width:0}
+button{padding:10px 18px;background:#2d7a38;color:#fff;border:none;border-radius:6px;cursor:pointer}
+</style></head><body>
+<nav><b>AgriAI Dashboard</b><div><a href='index.html'>Home</a><a href='about.html'>About</a><a href='technology.html'>Technology</a></div></nav>
+<div class='wrap'>
+<h1>Live Sensor Dashboard</h1>
+<div class='grid'>
+<div class='card'><h3>Soil Moisture</h3><div class='val' id='m'>--%</div><div class='bar'><div class='fill' id='fm'></div></div></div>
+<div class='card'><h3>Temperature</h3><div class='val' id='t'>--°C</div></div>
+<div class='card'><h3>Humidity</h3><div class='val' id='h'>--%</div></div>
+<div class='card'><h3>Rain Chance</h3><div class='val' id='r'>--%</div></div>
+</div>
+<br><button onclick='update()'>Refresh Sensor Data</button>
+<h2>AI Recommendation</h2>
+<p id='rec'></p>
+<p>Last Updated: <span id='time'></span></p>
+</div>
+<script>
+function update(){
+let m=Math.floor(Math.random()*101),t=20+Math.floor(Math.random()*18),h=40+Math.floor(Math.random()*55),r=Math.floor(Math.random()*101);
+mEl=document.getElementById('m');mEl.textContent=m+'%';document.getElementById('fm').style.width=m+'%';
+document.getElementById('t').textContent=t+'°C';
+document.getElementById('h').textContent=h+'%';
+document.getElementById('r').textContent=r+'%';
+let rec=m<30?'⚠ Irrigate Immediately':m<60?'💧 Irrigate within 6 hours':'✅ Moisture sufficient';
+if(r>70)rec='🌧 Rain expected. Delay irrigation.';
+document.getElementById('rec').textContent=rec;
+document.getElementById('time').textContent=new Date().toLocaleString();
+}
+update();setInterval(update,8000);
+</script></body></html>

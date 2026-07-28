@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Technology | AgriAI</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4faf4;color:#222}
+nav{background:#2d7a38;color:#fff;padding:16px 30px;display:flex;justify-content:space-between}
+nav a{color:#fff;text-decoration:none;margin:0 10px}
+.hero{padding:70px 10%;background:linear-gradient(135deg,#dff8df,#fff)}
+.hero h1{font-size:42px;color:#256b2f}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:40px 10%}
+.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.workflow{padding:40px 10%;text-align:center}
+.step{display:inline-block;background:#2d7a38;color:#fff;padding:15px 20px;border-radius:8px;margin:8px}
+#result{font-size:22px;color:#2d7a38;font-weight:bold}
+footer{background:#1f5d28;color:#fff;text-align:center;padding:20px;margin-top:30px}
+button{background:#2d7a38;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer}
+input{padding:8px;margin:5px}
+</style>
+</head>
+<body>
+<nav><div><b>AgriAI</b></div><div>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="technology.html">Technology</a>
+</div></nav>
+
+<section class="hero">
+<h1>AI & Sensor Technology</h1>
+<p>This page demonstrates how IoT sensors and Artificial Intelligence work together to generate irrigation recommendations for sugarcane crops.</p>
+</section>
+
+<section class="grid">
+<div class="card"><h3>🌱 Soil Moisture</h3><p>Continuously measures soil water content.</p></div>
+<div class="card"><h3>🌡 Temperature</h3><p>Monitors ambient temperature for crop health.</p></div>
+<div class="card"><h3>💧 Humidity</h3><p>Tracks air humidity to improve irrigation decisions.</p></div>
+<div class="card"><h3>☁ Weather API</h3><p>Forecast data avoids irrigation before rainfall.</p></div>
+</section>
+
+<section class="workflow">
+<h2>AI Decision Workflow</h2>
+<div class="step">Sensors</div> ➜
+<div class="step">Data Processing</div> ➜
+<div class="step">AI Model</div> ➜
+<div class="step">Recommendation</div>
+</section>
+
+<section style="padding:40px 10%">
+<h2>Irrigation Recommendation Simulator</h2>
+<label>Soil Moisture (%)</label><br>
+<input id="m" type="range" min="0" max="100" value="50" oninput="calc()">
+<span id="mv">50</span><br><br>
+<button onclick="calc()">Analyze</button>
+<p id="result"></p>
+</section>
+
+<footer>© 2026 AgriAI | Technology Page</footer>
+
+<script>
+function calc(){
+ let m=document.getElementById('m').value;
+ document.getElementById('mv').textContent=m;
+ let r="";
+ if(m<30) r="⚠ Irrigate Immediately";
+ else if(m<60) r="💧 Moderate Irrigation Recommended";
+ else r="✅ No Irrigation Required";
+ document.getElementById('result').textContent=r;
+}
+calc();
+</script>
+</body>
+</html>

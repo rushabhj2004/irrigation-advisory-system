@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Irrigation Advisory System | AI & Sensor Based Technology</title>
+
+<meta name="description"
+content="AI-Based Irrigation Advisory System for Sugarcane Crop using Soil Moisture Sensors, Weather Prediction and Smart Irrigation Technology.">
+
+<meta name="keywords"
+content="Irrigation Advisory System,Sugarcane,AI,IoT,Smart Farming,Agriculture,Soil Moisture Sensor">
+
+<meta name="author" content="Rushabh Jethwa">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f8fdf8;
+color:#333;
+}
+
+/* NAVBAR */
+
+nav{
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+background:white;
+box-shadow:0 2px 12px rgba(0,0,0,.08);
+position:fixed;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#2d7a38;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:#444;
+font-weight:600;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#2d7a38;
+}
+
+.btn{
+padding:10px 22px;
+background:#2d7a38;
+color:white;
+border-radius:30px;
+text-decoration:none;
+}
+
+/* HERO */
+
+.hero{
+margin-top:80px;
+height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:0 8%;
+background:linear-gradient(to right,#e8ffe9,#ffffff);
+}
+
+.hero-left{
+flex:1;
+}
+
+.hero-left h1{
+font-size:55px;
+color:#256b2f;
+margin-bottom:20px;
+}
+
+.hero-left p{
+font-size:18px;
+line-height:32px;
+margin-bottom:30px;
+}
+
+.hero-left button{
+padding:15px 35px;
+border:none;
+background:#2d7a38;
+color:white;
+font-size:17px;
+border-radius:40px;
+cursor:pointer;
+transition:.3s;
+}
+
+.hero-left button:hover{
+background:#1f5d28;
+transform:translateY(-3px);
+}
+
+.hero-right{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.hero-right img{
+width:85%;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%{transform:translateY(0px);}
+
+50%{transform:translateY(-15px);}
+
+100%{transform:translateY(0px);}
+
+}
+
+/* FEATURES */
+
+.features{
+
+padding:80px 8%;
+
+}
+
+.title{
+
+text-align:center;
+font-size:38px;
+margin-bottom:50px;
+color:#2d7a38;
+
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+background:white;
+
+padding:35px;
+
+border-radius:15px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.4s;
+
+text-align:center;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card h3{
+
+margin:20px 0;
+
+color:#2d7a38;
+
+}
+
+.card p{
+
+line-height:28px;
+
+}
+
+/* ABOUT */
+
+.about{
+
+padding:80px 8%;
+
+display:flex;
+
+align-items:center;
+
+gap:50px;
+
+background:#eef8ef;
+
+}
+
+.about img{
+
+width:45%;
+
+border-radius:15px;
+
+}
+
+.about-content{
+
+flex:1;
+
+}
+
+.about-content h2{
+
+font-size:40px;
+
+color:#2d7a38;
+
+margin-bottom:20px;
+
+}
+
+.about-content p{
+
+line-height:30px;
+
+font-size:17px;
+
+}
+
+/* COUNTER */
+
+.counter{
+
+padding:70px 8%;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:30px;
+
+text-align:center;
+
+}
+
+.box{
+
+background:white;
+
+padding:35px;
+
+border-radius:15px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.box h1{
+
+font-size:45px;
+
+color:#2d7a38;
+
+}
+
+.box p{
+
+margin-top:10px;
+
+}
+
+/* CTA */
+
+.cta{
+
+padding:90px 8%;
+
+background:#2d7a38;
+
+text-align:center;
+
+color:white;
+
+}
+
+.cta h2{
+
+font-size:42px;
+
+margin-bottom:20px;
+
+}
+
+.cta p{
+
+font-size:18px;
+
+margin-bottom:30px;
+
+}
+
+.cta button{
+
+padding:15px 35px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:25px;
+
+text-align:center;
+
+background:#1f5d28;
+
+color:white;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.hero{
+
+flex-direction:column;
+
+height:auto;
+
+padding-top:60px;
+
+}
+
+.about{
+
+flex-direction:column;
+
+}
+
+.about img{
+
+width:100%;
+
+}
+
+.hero-right img{
+
+width:100%;
+
+}
+
+.hero-left h1{
+
+font-size:40px;
+
+}
+
+nav ul{
+
+display:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">AgriAI</div>
+
+<ul>
+
+<li><a href="index.html" class="active">Home</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="technology.html">Technology</a></li>
+
+<li><a href="dashboard.html">Dashboard</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<a href="#" class="btn">Get Started</a>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>AI-Based Irrigation Advisory System for Sugarcane Crop</h1>
+
+<p>
+
+An intelligent irrigation advisory platform that combines Artificial Intelligence,
+
+IoT Sensors, Weather Forecasting and Soil Moisture Monitoring to optimize water
+
+usage, improve crop health, and increase sugarcane productivity.
+
+</p>
+
+<button onclick="learnMore()">Explore System</button>
+
+</div>
+
+<div class="hero-right">
+
+<img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900" alt="Smart Agriculture">
+
+</div>
+
+</section>
+
+<section class="features">
+
+<h2 class="title">Core Features</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>AI Prediction</h3>
+
+<p>
+
+AI analyzes moisture level, weather conditions and crop requirements to recommend the ideal irrigation schedule.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>IoT Sensors</h3>
+
+<p>
+
+Real-time monitoring using soil moisture, humidity and temperature sensors for precise irrigation.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Weather Forecast</h3>
+
+<p>
+
+Weather prediction helps reduce unnecessary irrigation before rainfall.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Water Conservation</h3>
+
+<p>
+
+Reduce water wastage by supplying only the required amount of water to crops.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="about">
+
+<img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900">
+
+<div class="about-content">
+
+<h2>About the Project</h2>
+
+<p>
+
+The AI-Based Irrigation Advisory System is designed specifically for sugarcane farmers.
+
+Using IoT sensors installed in agricultural fields, the system continuously monitors
+
+soil moisture, temperature, humidity, and weather conditions. Artificial Intelligence
+
+analyzes these parameters and generates irrigation recommendations, ensuring efficient
+
+water management, higher crop yield, reduced operational cost, and sustainable farming.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="counter">
+
+<div class="box">
+
+<h1 id="c1">0</h1>
+
+<p>Soil Moisture Accuracy</p>
+
+</div>
+
+<div class="box">
+
+<h1 id="c2">0</h1>
+
+<p>Water Saving (%)</p>
+
+</div>
+
+<div class="box">
+
+<h1 id="c3">0</h1>
+
+<p>Prediction Accuracy (%)</p>
+
+</div>
+
+<div class="box">
+
+<h1 id="c4">0</h1>
+
+<p>Sensor Parameters</p>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>Empowering Smart Agriculture with AI</h2>
+
+<p>
+
+Making irrigation smarter, sustainable, and data-driven for sugarcane cultivation.
+
+</p>
+
+<button onclick="alert('Next pages will include AI Technology, Dashboard, Contact and About sections.')">Learn More</button>
+
+</section>
+
+<footer>
+
+© 2026 AgriAI | Irrigation Advisory System for Sugarcane Crop | Developed for Academic Project
+
+</footer>
+
+<script>
+
+function learnMore(){
+
+window.scrollTo({
+
+top:750,
+
+behavior:"smooth"
+
+});
+
+}
+
+let started=false;
+
+window.addEventListener("scroll",()=>{
+
+if(started) return;
+
+if(window.scrollY>900){
+
+started=true;
+
+counter("c1",95);
+
+counter("c2",45);
+
+counter("c3",93);
+
+counter("c4",4);
+
+}
+
+});
+
+function counter(id,target){
+
+let count=0;
+
+let speed=25;
+
+let interval=setInterval(()=>{
+
+count++;
+
+document.getElementById(id).innerHTML=count;
+
+if(count>=target){
+
+clearInterval(interval);
+
+}
+
+},speed);
+
+}
+
+</script>
+
+</body>
+
+</html>

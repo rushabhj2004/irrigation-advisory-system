@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Irrigation Advisory System</title>
+
+<meta name="description" content="About the AI-Based Irrigation Advisory System for Sugarcane Crop using IoT Sensors and Artificial Intelligence.">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5fff6;
+color:#333;
+}
+
+/* Navigation */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 3px 12px rgba(0,0,0,.08);
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#2d7a38;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+color:#2d7a38;
+}
+
+/* Hero */
+
+.hero{
+margin-top:80px;
+padding:80px 8%;
+text-align:center;
+background:linear-gradient(135deg,#d8f5d6,#ffffff);
+}
+
+.hero h1{
+font-size:50px;
+color:#256d2d;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:900px;
+margin:auto;
+font-size:18px;
+line-height:32px;
+}
+
+/* Project Overview */
+
+.overview{
+display:flex;
+align-items:center;
+gap:60px;
+padding:80px 8%;
+}
+
+.overview img{
+width:45%;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.text{
+flex:1;
+}
+
+.text h2{
+color:#2d7a38;
+font-size:38px;
+margin-bottom:20px;
+}
+
+.text p{
+line-height:30px;
+margin-bottom:15px;
+}
+
+/* Objectives */
+
+.objectives{
+padding:80px 8%;
+background:#eef9ef;
+}
+
+.title{
+text-align:center;
+font-size:40px;
+color:#2d7a38;
+margin-bottom:50px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#2d7a38;
+}
+
+/* Architecture */
+
+.architecture{
+padding:80px 8%;
+}
+
+.flow{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+margin-top:40px;
+}
+
+.step{
+background:#2d7a38;
+color:white;
+padding:25px;
+border-radius:12px;
+min-width:180px;
+text-align:center;
+font-weight:bold;
+position:relative;
+}
+
+.arrow{
+font-size:35px;
+display:flex;
+align-items:center;
+color:#2d7a38;
+}
+
+/* Benefits */
+
+.benefits{
+padding:80px 8%;
+background:#f8fff8;
+}
+
+.benefit-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.benefit{
+background:white;
+padding:25px;
+border-left:6px solid #2d7a38;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+/* Technology */
+
+.tech{
+padding:80px 8%;
+}
+
+.tech-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-top:40px;
+}
+
+.tech-card{
+background:#2d7a38;
+color:white;
+padding:35px;
+border-radius:12px;
+text-align:center;
+transition:.4s;
+}
+
+.tech-card:hover{
+transform:scale(1.05);
+}
+
+/* Timeline */
+
+.timeline{
+padding:80px 8%;
+background:#eef8ef;
+}
+
+.line{
+border-left:4px solid #2d7a38;
+padding-left:30px;
+margin-left:20px;
+}
+
+.event{
+margin-bottom:40px;
+position:relative;
+}
+
+.event::before{
+content:"";
+width:18px;
+height:18px;
+background:#2d7a38;
+border-radius:50%;
+position:absolute;
+left:-40px;
+top:5px;
+}
+
+/* Footer */
+
+footer{
+background:#1c5c28;
+padding:25px;
+text-align:center;
+color:white;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.overview{
+flex-direction:column;
+}
+
+.overview img{
+width:100%;
+}
+
+nav ul{
+display:none;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.flow{
+flex-direction:column;
+align-items:center;
+}
+
+.arrow{
+transform:rotate(90deg);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">AgriAI</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="#">Technology</a></li>
+<li><a href="#">Dashboard</a></li>
+<li><a href="#">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h1>About the Irrigation Advisory System</h1>
+
+<p>
+
+The AI-Based Irrigation Advisory System is designed to support sugarcane farmers by combining Artificial Intelligence, IoT Sensors, and Weather Forecasting to make irrigation decisions more accurate, efficient, and sustainable.
+
+</p>
+
+</section>
+
+<section class="overview">
+
+<img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1000">
+
+<div class="text">
+
+<h2>Project Overview</h2>
+
+<p>
+
+Traditional irrigation methods often result in overwatering or underwatering due to a lack of real-time field information. This leads to water wastage and lower crop productivity.
+
+</p>
+
+<p>
+
+Our proposed solution continuously collects soil moisture, humidity, temperature, and weather information through IoT sensors. AI algorithms process these parameters and recommend the best irrigation schedule for sugarcane cultivation.
+
+</p>
+
+<p>
+
+The system improves water efficiency, reduces manual effort, lowers farming costs, and increases crop yield.
+
+</p>
+
+</div>
+
+</section>
+
+<section class="objectives">
+
+<h2 class="title">Project Objectives</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Smart Irrigation</h3>
+<p>Automate irrigation recommendations using AI models.</p>
+</div>
+
+<div class="card">
+<h3>Water Conservation</h3>
+<p>Reduce unnecessary water usage through precise irrigation.</p>
+</div>
+
+<div class="card">
+<h3>Higher Yield</h3>
+<p>Improve sugarcane productivity using data-driven farming.</p>
+</div>
+
+<div class="card">
+<h3>Sustainable Agriculture</h3>
+<p>Support eco-friendly farming with intelligent resource management.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="architecture">
+
+<h2 class="title">System Workflow</h2>
+
+<div class="flow">
+
+<div class="step">IoT Sensors</div>
+
+<div class="arrow">➜</div>
+
+<div class="step">Data Collection</div>
+
+<div class="arrow">➜</div>
+
+<div class="step">AI Processing</div>
+
+<div class="arrow">➜</div>
+
+<div class="step">Irrigation Recommendation</div>
+
+<div class="arrow">➜</div>
+
+<div class="step">Farmer Notification</div>
+
+</div>
+
+</section>
+
+<section class="benefits">
+
+<h2 class="title">Key Benefits</h2>
+
+<div class="benefit-box">
+
+<div class="benefit">
+<h3>✔ Save Water</h3>
+<p>Uses only the required amount of water based on soil conditions.</p>
+</div>
+
+<div class="benefit">
+<h3>✔ Reduce Cost</h3>
+<p>Minimizes electricity and irrigation expenses.</p>
+</div>
+
+<div class="benefit">
+<h3>✔ Better Crop Health</h3>
+<p>Maintains ideal moisture for sugarcane growth.</p>
+</div>
+
+<div class="benefit">
+<h3>✔ Smart Decisions</h3>
+<p>AI provides accurate irrigation timing.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="tech">
+
+<h2 class="title">Technology Stack</h2>
+
+<div class="tech-grid">
+
+<div class="tech-card">Artificial Intelligence</div>
+
+<div class="tech-card">Machine Learning</div>
+
+<div class="tech-card">IoT Sensors</div>
+
+<div class="tech-card">Weather API</div>
+
+<div class="tech-card">Cloud Database</div>
+
+<div class="tech-card">Web Dashboard</div>
+
+</div>
+
+</section>
+
+<section class="timeline">
+
+<h2 class="title">Project Implementation Flow</h2>
+
+<div class="line">
+
+<div class="event">
+<h3>Step 1</h3>
+<p>Install soil moisture and environmental sensors.</p>
+</div>
+
+<div class="event">
+<h3>Step 2</h3>
+<p>Collect real-time agricultural data.</p>
+</div>
+
+<div class="event">
+<h3>Step 3</h3>
+<p>Train AI model using historical irrigation data.</p>
+</div>
+
+<div class="event">
+<h3>Step 4</h3>
+<p>Generate irrigation recommendations.</p>
+</div>
+
+<div class="event">
+<h3>Step 5</h3>
+<p>Deliver recommendations to farmers through the web dashboard.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 AgriAI | AI-Based Irrigation Advisory System for Sugarcane Crop
+
+</footer>
+
+<script>
+
+const cards=document.querySelectorAll('.card,.benefit,.tech-card');
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+entry.target.style.transform="translateY(0px)";
+
+}
+
+});
+
+});
+
+cards.forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(50px)";
+
+card.style.transition="all .8s ease";
+
+observer.observe(card);
+
+});
+
+</script>
+
+</body>
+</html>

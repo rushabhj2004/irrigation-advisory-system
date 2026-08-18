@@ -1,40 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Dashboard | AgriAI</title>
-<style>
-body{font-family:Arial;margin:0;background:#eef7ee}nav{background:#2d7a38;color:#fff;padding:15px 25px;display:flex;justify-content:space-between}
-nav a{color:#fff;text-decoration:none;margin-left:12px}.wrap{padding:30px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 3px 10px rgba(0,0,0,.1)}
-.val{font-size:36px;color:#2d7a38;font-weight:bold}
-#rec{font-size:22px;font-weight:bold}.bar{height:10px;background:#ddd;border-radius:5px}.fill{height:10px;background:#2d7a38;border-radius:5px;width:0}
-button{padding:10px 18px;background:#2d7a38;color:#fff;border:none;border-radius:6px;cursor:pointer}
-</style></head><body>
-<nav><b>AgriAI Dashboard</b><div><a href='index.html'>Home</a><a href='about.html'>About</a><a href='technology.html'>Technology</a></div></nav>
-<div class='wrap'>
-<h1>Live Sensor Dashboard</h1>
-<div class='grid'>
-<div class='card'><h3>Soil Moisture</h3><div class='val' id='m'>--%</div><div class='bar'><div class='fill' id='fm'></div></div></div>
-<div class='card'><h3>Temperature</h3><div class='val' id='t'>--°C</div></div>
-<div class='card'><h3>Humidity</h3><div class='val' id='h'>--%</div></div>
-<div class='card'><h3>Rain Chance</h3><div class='val' id='r'>--%</div></div>
-</div>
-<br><button onclick='update()'>Refresh Sensor Data</button>
-<h2>AI Recommendation</h2>
-<p id='rec'></p>
-<p>Last Updated: <span id='time'></span></p>
-</div>
-<script>
-function update(){
-let m=Math.floor(Math.random()*101),t=20+Math.floor(Math.random()*18),h=40+Math.floor(Math.random()*55),r=Math.floor(Math.random()*101);
-mEl=document.getElementById('m');mEl.textContent=m+'%';document.getElementById('fm').style.width=m+'%';
-document.getElementById('t').textContent=t+'°C';
-document.getElementById('h').textContent=h+'%';
-document.getElementById('r').textContent=r+'%';
-let rec=m<30?'⚠ Irrigate Immediately':m<60?'💧 Irrigate within 6 hours':'✅ Moisture sufficient';
-if(r>70)rec='🌧 Rain expected. Delay irrigation.';
-document.getElementById('rec').textContent=rec;
-document.getElementById('time').textContent=new Date().toLocaleString();
-}
-update();setInterval(update,8000);
-</script></body></html>
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | AgriAI</title>
+
+    <meta name="description"
+        content="AI and sensor-based irrigation monitoring dashboard for sugarcane crops.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef7ee;
+            color: #222;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2d7a38;
+            color: #fff;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav div:last-child {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main container */
+        .wrap {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 25px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            color: #256b2f;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Dashboard cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #555;
+        }
+
+        .val {
+            font-size: 36px;
+            color: #2d7a38;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        /* Progress bar */
+        .bar {
+            width: 100%;
+            height: 12px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            width: 0%;
+            background: #2d7a38;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Button */
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 12px 22px;
+            background: #2d7a38;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #225e2b;
+        }
+
+        /* Recommendation */
+        .recommendation {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .recommendation h2 {
+            color: #256b2f;
+        }
+
+        #rec {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2d7a38;
+            margin: 20px 0;
+        }
+
+        #time {
+            color: #666;
+        }
+
+        /* Status */
+        .status {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+        }
+
+        .status span {
+            color: #2d7a38;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f5d28;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav div:last-child {
+                justify-content: center;
+            }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+
+            .wrap {
+                padding: 30px 15px;
+            }
+
+            .val {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            🌱 AgriAI Dashboard
+        </div>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="technology.html">Technology</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Main Dashboard -->
+    <main class="wrap">
+
+        <section class="heading">
+
+            <h1>Live Sensor Dashboard</h1>
+
+            <p>
+                Monitor soil and environmental conditions for
+                intelligent sugarcane irrigation.
+            </p>
+
+        </section>
+
+
+        <!-- Sensor Cards -->
+        <section class="grid">
+
+            <!-- Soil Moisture -->
+            <div class="card">
+
+                <h3>🌱 Soil Moisture</h3>
+
+                <div class="val" id="m">
+                    --%
+                </div>
+
+                <div class="bar">
+                    <div class="fill" id="fm"></div>
+                </div>
+
+            </div>
+
+
+            <!-- Temperature -->
+            <div class="card">
+
+                <h3>🌡️ Temperature</h3>
+
+                <div class="val" id="t">
+                    --°C
+                </div>
+
+                <p>Current environmental temperature</p>
+
+            </div>
+
+
+            <!-- Humidity -->
+            <div class="card">
+
+                <h3>💧 Humidity</h3>
+
+                <div class="val" id="h">
+                    --%
+                </div>
+
+                <p>Current atmospheric humidity</p>
+
+            </div>
+
+
+            <!-- Rain Chance -->
+            <div class="card">
+
+                <h3>🌧️ Rain Chance</h3>
+
+                <div class="val" id="r">
+                    --%
+                </div>
+
+                <p>Estimated probability of rainfall</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Refresh Button -->
+        <div class="button-container">
+
+            <button type="button" onclick="updateDashboard()">
+                🔄 Refresh Sensor Data
+            </button>
+
+        </div>
+
+
+        <!-- AI Recommendation -->
+        <section class="recommendation">
+
+            <h2>🤖 AI Irrigation Recommendation</h2>
+
+            <p id="rec">
+                Analyzing sensor data...
+            </p>
+
+            <p>
+                Last Updated:
+                <span id="time">--</span>
+            </p>
+
+        </section>
+
+
+        <!-- System Status -->
+        <div class="status">
+
+            System Status:
+            <span>● Online</span>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        © 2026 AgriAI |
+        AI-Based Irrigation Advisory System
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function updateDashboard() {
+
+            // Generate simulated sensor values
+            const moisture =
+                Math.floor(Math.random() * 101);
+
+            const temperature =
+                20 + Math.floor(Math.random() * 18);
+
+            const humidity =
+                40 + Math.floor(Math.random() * 55);
+
+            const rainChance =
+                Math.floor(Math.random() * 101);
+
+
+            // Update soil moisture
+            document.getElementById("m").textContent =
+                moisture + "%";
+
+            document.getElementById("fm").style.width =
+                moisture + "%";
+
+
+            // Update temperature
+            document.getElementById("t").textContent =
+                temperature + "°C";
+
+
+            // Update humidity
+            document.getElementById("h").textContent =
+                humidity + "%";
+
+
+            // Update rainfall probability
+            document.getElementById("r").textContent =
+                rainChance + "%";
+
+
+            // AI recommendation
+            let recommendation;
+
+            if (rainChance > 70) {
+
+                recommendation =
+                    "🌧️ Rain expected. Delay irrigation.";
+
+            } else if (moisture < 30) {
+
+                recommendation =
+                    "⚠️ Irrigate Immediately.";
+
+            } else if (moisture < 60) {
+
+                recommendation =
+                    "💧 Irrigate within 6 hours.";
+
+            } else {
+
+                recommendation =
+                    "✅ Moisture sufficient. No irrigation required.";
+
+            }
+
+
+            document.getElementById("rec").textContent =
+                recommendation;
+
+
+            // Last updated time
+            document.getElementById("time").textContent =
+                new Date().toLocaleString();
+
+        }
+
+
+        // Load dashboard data when page opens
+        updateDashboard();
+
+
+        // Automatically update sensor data every 8 seconds
+        setInterval(updateDashboard, 8000);
+
+    </script>
+
+</body>
+
+</html>

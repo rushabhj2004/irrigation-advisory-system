@@ -1,75 +1,521 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Technology | AgriAI</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#f4faf4;color:#222}
-nav{background:#2d7a38;color:#fff;padding:16px 30px;display:flex;justify-content:space-between}
-nav a{color:#fff;text-decoration:none;margin:0 10px}
-.hero{padding:70px 10%;background:linear-gradient(135deg,#dff8df,#fff)}
-.hero h1{font-size:42px;color:#256b2f}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:40px 10%}
-.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.workflow{padding:40px 10%;text-align:center}
-.step{display:inline-block;background:#2d7a38;color:#fff;padding:15px 20px;border-radius:8px;margin:8px}
-#result{font-size:22px;color:#2d7a38;font-weight:bold}
-footer{background:#1f5d28;color:#fff;text-align:center;padding:20px;margin-top:30px}
-button{background:#2d7a38;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer}
-input{padding:8px;margin:5px}
-</style>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Technology | AgriAI</title>
+
+    <meta name="description"
+        content="Explore AI, IoT sensors and smart irrigation technology used by the AgriAI Irrigation Advisory System for sugarcane crops.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4faf4;
+            color: #222;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2d7a38;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 10%;
+            background: linear-gradient(135deg, #dff8df, #ffffff);
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            color: #256b2f;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Sensor Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            padding: 50px 10%;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #2d7a38;
+            margin-top: 0;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Workflow */
+        .workflow {
+            padding: 50px 10%;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .workflow h2 {
+            color: #256b2f;
+            margin-bottom: 30px;
+        }
+
+        .workflow-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .step {
+            display: inline-block;
+            background: #2d7a38;
+            color: #fff;
+            padding: 16px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .arrow {
+            font-size: 25px;
+            color: #2d7a38;
+        }
+
+        /* Simulator */
+        .simulator {
+            padding: 50px 10%;
+        }
+
+        .simulator-box {
+            max-width: 750px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .simulator h2 {
+            color: #256b2f;
+        }
+
+        .slider-container {
+            margin: 25px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: #2d7a38;
+            cursor: pointer;
+        }
+
+        .moisture-value {
+            font-size: 28px;
+            color: #2d7a38;
+            font-weight: bold;
+        }
+
+        button {
+            background: #2d7a38;
+            color: #fff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #225e2b;
+        }
+
+        #result {
+            font-size: 21px;
+            color: #2d7a38;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef8ee;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f5d28;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 55px 7%;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .grid,
+            .simulator {
+                padding-left: 7%;
+                padding-right: 7%;
+            }
+
+            .workflow {
+                padding-left: 7%;
+                padding-right: 7%;
+            }
+
+            .arrow {
+                display: none;
+            }
+
+            .workflow-container {
+                flex-direction: column;
+            }
+
+            .step {
+                width: 220px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<nav><div><b>AgriAI</b></div><div>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="technology.html">Technology</a>
-</div></nav>
 
-<section class="hero">
-<h1>AI & Sensor Technology</h1>
-<p>This page demonstrates how IoT sensors and Artificial Intelligence work together to generate irrigation recommendations for sugarcane crops.</p>
-</section>
+    <!-- Navigation -->
+    <nav>
 
-<section class="grid">
-<div class="card"><h3>🌱 Soil Moisture</h3><p>Continuously measures soil water content.</p></div>
-<div class="card"><h3>🌡 Temperature</h3><p>Monitors ambient temperature for crop health.</p></div>
-<div class="card"><h3>💧 Humidity</h3><p>Tracks air humidity to improve irrigation decisions.</p></div>
-<div class="card"><h3>☁ Weather API</h3><p>Forecast data avoids irrigation before rainfall.</p></div>
-</section>
+        <div class="logo">
+            🌱 AgriAI
+        </div>
 
-<section class="workflow">
-<h2>AI Decision Workflow</h2>
-<div class="step">Sensors</div> ➜
-<div class="step">Data Processing</div> ➜
-<div class="step">AI Model</div> ➜
-<div class="step">Recommendation</div>
-</section>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="technology.html">Technology</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="contact.html">Contact</a>
+        </div>
 
-<section style="padding:40px 10%">
-<h2>Irrigation Recommendation Simulator</h2>
-<label>Soil Moisture (%)</label><br>
-<input id="m" type="range" min="0" max="100" value="50" oninput="calc()">
-<span id="mv">50</span><br><br>
-<button onclick="calc()">Analyze</button>
-<p id="result"></p>
-</section>
+    </nav>
 
-<footer>© 2026 AgriAI | Technology Page</footer>
 
-<script>
-function calc(){
- let m=document.getElementById('m').value;
- document.getElementById('mv').textContent=m;
- let r="";
- if(m<30) r="⚠ Irrigate Immediately";
- else if(m<60) r="💧 Moderate Irrigation Recommended";
- else r="✅ No Irrigation Required";
- document.getElementById('result').textContent=r;
-}
-calc();
-</script>
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <h1>AI & Sensor Technology</h1>
+
+        <p>
+            This page demonstrates how IoT sensors and Artificial
+            Intelligence can work together to generate smart irrigation
+            recommendations for sugarcane crops.
+        </p>
+
+    </section>
+
+
+    <!-- Sensor Technology -->
+    <section class="grid">
+
+        <div class="card">
+            <h3>🌱 Soil Moisture</h3>
+
+            <p>
+                Measures the amount of water present in the soil and
+                helps determine when irrigation is required.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <h3>🌡️ Temperature</h3>
+
+            <p>
+                Monitors environmental temperature to support crop
+                health analysis and irrigation decisions.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <h3>💧 Humidity</h3>
+
+            <p>
+                Tracks atmospheric humidity and provides additional
+                environmental information for irrigation planning.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <h3>☁️ Weather Data</h3>
+
+            <p>
+                Weather and rainfall information can help prevent
+                unnecessary irrigation before expected rainfall.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- AI Workflow -->
+    <section class="workflow">
+
+        <h2>AI Decision Workflow</h2>
+
+        <div class="workflow-container">
+
+            <div class="step">
+                📡 Sensors
+            </div>
+
+            <div class="arrow">
+                ➜
+            </div>
+
+            <div class="step">
+                ⚙️ Data Processing
+            </div>
+
+            <div class="arrow">
+                ➜
+            </div>
+
+            <div class="step">
+                🤖 AI Model
+            </div>
+
+            <div class="arrow">
+                ➜
+            </div>
+
+            <div class="step">
+                💧 Recommendation
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Irrigation Simulator -->
+    <section class="simulator">
+
+        <div class="simulator-box">
+
+            <h2>
+                Irrigation Recommendation Simulator
+            </h2>
+
+            <p>
+                Adjust the soil moisture level to see the
+                simulated irrigation recommendation.
+            </p>
+
+
+            <div class="slider-container">
+
+                <label for="moisture">
+                    Soil Moisture (%)
+                </label>
+
+                <input
+                    id="moisture"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="50"
+                >
+
+                <p>
+                    Current Moisture:
+                    <span
+                        id="moistureValue"
+                        class="moisture-value">
+                        50%
+                    </span>
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="analyzeButton">
+                🔍 Analyze
+            </button>
+
+
+            <p id="result">
+                💧 Moderate Irrigation Recommended
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        © 2026 AgriAI |
+        AI-Based Irrigation Advisory System
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        const moistureSlider =
+            document.getElementById("moisture");
+
+        const moistureValue =
+            document.getElementById("moistureValue");
+
+        const result =
+            document.getElementById("result");
+
+        const analyzeButton =
+            document.getElementById("analyzeButton");
+
+
+        // Update displayed moisture value
+        moistureSlider.addEventListener("input", function () {
+
+            moistureValue.textContent =
+                this.value + "%";
+
+        });
+
+
+        // Generate irrigation recommendation
+        function calculateRecommendation() {
+
+            const moisture =
+                Number(moistureSlider.value);
+
+            let recommendation;
+
+
+            if (moisture < 30) {
+
+                recommendation =
+                    "⚠️ Irrigate Immediately";
+
+            } else if (moisture < 60) {
+
+                recommendation =
+                    "💧 Moderate Irrigation Recommended";
+
+            } else {
+
+                recommendation =
+                    "✅ No Irrigation Required";
+
+            }
+
+
+            result.textContent =
+                recommendation;
+
+        }
+
+
+        // Analyze button
+        analyzeButton.addEventListener(
+            "click",
+            calculateRecommendation
+        );
+
+
+        // Initial calculation
+        calculateRecommendation();
+
+    </script>
+
 </body>
+
 </html>
